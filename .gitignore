@@ -12,3 +12,4 @@
 metals.sbt
 target/
 project/project/**
+*.class
