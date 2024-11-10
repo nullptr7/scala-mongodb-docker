@@ -3,8 +3,10 @@ import sbt._
 object Scalac {
   val Lint =
     Seq(
-      "-Wunused:all",
+      "-Wdead-code",
+      "-Wunused:_",
       "-Wvalue-discard",
+      "-Xlint:_",
     )
 
   val FatalWarnings =

@@ -1,9 +1,10 @@
 package com.github.nullptr7
 package scalamongodbdocker
 
-@main def Main(args: String*): Unit =
-  println("─" * 100)
+import cats.effect.{IO, IOApp}
 
-  println("hello world")
+object Main extends IOApp.Simple {
+  override def run: IO[Unit] =
+    IO.println("Hello from Cats")
 
-  println("─" * 100)
+}

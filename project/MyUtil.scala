@@ -27,7 +27,7 @@ object MyUtil {
       h <- hash.map(styled)
     } yield s"git:$b:$h"
 
-  private def branch: Option[String] =
+  private def branch:    Option[String] =
     run("git rev-parse --abbrev-ref HEAD")
 
   private def hash: Option[String] =
@@ -45,6 +45,6 @@ object MyUtil {
   private val noopProcessLogger: ProcessLogger =
     ProcessLogger(_ => (), _ => ())
 
-  val Cctt: String =
+  val Cctt:                      String        =
     "compile->compile;test->test"
 }

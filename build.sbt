@@ -1,7 +1,7 @@
 import Dependencies._
 
 ThisBuild / organization := "com.github.nullptr7"
-ThisBuild / scalaVersion := "3.5.1"
+ThisBuild / scalaVersion := "2.13.14"
 
 lazy val `scala-mongodb-docker` =
   project
@@ -22,7 +22,7 @@ lazy val commonSettings = {
           .filterNot(Scalac.FatalWarnings.toSet) :+ "-Wconf:any:silent"
       },
       Test / console / scalacOptions :=
-        (Compile / console / scalacOptions).value,
+        (Compile / console / scalacOptions).value
     )
 
   lazy val otherCommonSettings =
@@ -35,7 +35,7 @@ lazy val commonSettings = {
 
   Seq(
     commonScalacOptions,
-    otherCommonSettings,
+    otherCommonSettings
   ).reduceLeft(_ ++ _)
 }
 
@@ -47,25 +47,32 @@ lazy val autoImportSettings =
         "scala",
         "scala.Predef",
         "scala.annotation",
-        "scala.util.chaining",
+        "scala.util.chaining"
       ).mkString(start = "-Yimports:", sep = ",", end = ""),
     Test / scalacOptions +=
       Seq(
         "org.scalacheck",
-        "org.scalacheck.Prop",
-      ).mkString(start = "-Yimports:", sep = ",", end = ""),
+        "org.scalacheck.Prop"
+      ).mkString(start = "-Yimports:", sep = ",", end = "")
   )
 
 lazy val dependencies =
   Seq(
     libraryDependencies ++= Seq(
-      // main dependencies
+      is.cir.ciris,
+      org.http4s.`http4s-dsl`,
+      org.http4s.`http4s-ember-client`,
+      org.http4s.`http4s-ember-server`,
+      org.mongodb.scala.`mongo-scala-driver`,
+      org.typelevel.`log4cats-noop`,
+      org.typelevel.`log4cats-slf4j`
     ),
     libraryDependencies ++= Seq(
       com.eed3si9n.expecty.expecty,
       org.scalacheck.scalacheck,
-      org.scalameta.`munit-scalacheck`,
-      org.scalameta.munit,
       org.typelevel.`discipline-munit`,
-    ).map(_ % Test),
+      org.mockito.`mockito-scala`,
+      org.scalatestplus.mockito45,
+      org.scalatest.scalatest
+    ).map(_ % Test)
   )

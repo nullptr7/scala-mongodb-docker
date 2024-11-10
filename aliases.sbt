@@ -6,6 +6,8 @@ addCommandAlias("ls", "projects")
 addCommandAlias("cd", "project")
 addCommandAlias("root", "cd scala-mongodb-docker")
 addCommandAlias("c", "compile")
+addCommandAlias("cc", "clean; compile")
+addCommandAlias("all", "reload; update; clean; compile")
 addCommandAlias("ca", "Test / compile")
 addCommandAlias("t", "test")
 addCommandAlias("r", "run")
@@ -14,15 +16,15 @@ addCommandAlias("s", "reStop")
 addCommandAlias("star", "thankYouStars")
 addCommandAlias(
   "styleCheck",
-  "scalafmtSbtCheck; scalafmtCheckAll; scalafixAll --check",
+  "scalafmtSbtCheck; scalafmtCheckAll; scalafixAll --check"
 )
 addCommandAlias(
   "styleFix",
-  "scalafixAll; scalafmtSbt; scalafmtAll",
+  "scalafixAll; scalafmtSbt; scalafmtAll"
 )
 addCommandAlias(
   "up2date",
-  "reload plugins; dependencyUpdates; reload return; dependencyUpdates",
+  "reload plugins; dependencyUpdates; reload return; dependencyUpdates"
 )
 
 onLoadMessage +=
@@ -43,4 +45,6 @@ onLoadMessage +=
       |│ ${styled("styleCheck")}  │ fmt & fix check   │
       |│ ${styled("styleFix")}    │ fix then fmt      │
       |│ ${styled("up2date")}     │ dependencyUpdates │
+      |│ ${styled("cc")}          │ clean compile     │
+      |│ ${styled("all")}         │ all               │
       |╰─────────────┴───────────────────╯""".stripMargin
