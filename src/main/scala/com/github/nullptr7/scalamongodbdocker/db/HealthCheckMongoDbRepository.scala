@@ -17,12 +17,10 @@ sealed abstract class HealthCheckMongoDbRepository[F[_]: Async: Logger](dbName: 
       _      <-
         Async[F]
           .fromFuture[Document] {
-
             client
               .getDatabase(dbName)
               .runCommand(Document("ping" -> 1))
               .as[F]
-
           }
     } yield ()
 

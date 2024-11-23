@@ -71,8 +71,8 @@ lazy val dependencies =
       com.eed3si9n.expecty.expecty,
       org.scalacheck.scalacheck,
       org.typelevel.`discipline-munit`,
-      org.mockito.`mockito-scala`,
       org.scalatestplus.mockito45,
-      org.scalatest.scalatest
+      org.scalatest.scalatest,
+      org.typelevel.`munit-cats-effect-3`
     ).map(_ % Test)
   )

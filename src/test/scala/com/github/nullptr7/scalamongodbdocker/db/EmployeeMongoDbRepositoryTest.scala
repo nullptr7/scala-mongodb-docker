@@ -2,19 +2,19 @@ package com.github.nullptr7
 package scalamongodbdocker
 package db
 
-import cats.effect.IO
+import cats.effect._
 import munit.CatsEffectSuite
 import org.mockito.ArgumentMatchers.any
-import org.mockito.Mockito._
-import org.mongodb.scala._
+import org.mockito.Mockito.when
 import org.mongodb.scala.bson.collection.immutable.Document
+import org.mongodb.scala.{MongoClient, MongoDatabase, SingleObservable}
 import org.scalatestplus.mockito.MockitoSugar
 import org.typelevel.log4cats.Logger
 import org.typelevel.log4cats.slf4j.Slf4jLogger
 
-class HealthCheckMongoDbRepositoryTest extends CatsEffectSuite with MockitoSugar {
+class EmployeeMongoDbRepositoryTest extends CatsEffectSuite with MockitoSugar {
 
-  test("HealthCheckMongoDbRepository should be able to ping successfully") {
+  test("EmployeeMongoDbRepository should be initialized") {
 
     implicit val logger: Logger[IO] = Slf4jLogger.getLogger[IO]
 
@@ -23,10 +23,15 @@ class HealthCheckMongoDbRepositoryTest extends CatsEffectSuite with MockitoSugar
     val pingResponse:    Document      = Document("ok" -> 1)
 
     when(mockMongoClient.getDatabase("admin")).thenReturn(mockDatabase)
-    when(mockDatabase.runCommand[Document](any())(any(), any())).thenReturn(SingleObservable(pingResponse))
+    when(mockDatabase.runCommand[Document](any[Document]())(any(), any())).thenReturn(SingleObservable(pingResponse))
 
-    val healthCheckMongoDbRepository = HealthCheckMongoDbRepositoryImpl.make[IO](IO.pure(mockMongoClient), "admin")
+    val employeeMongoDbRepository = EmployeeMongoDbRepositoryImpl.make[IO](IO.pure(mockMongoClient))
 
-    assertIO(healthCheckMongoDbRepository.ping, ())
+    employeeMongoDbRepository
+      .getAllEmployees
+      .value
+      .map { fail =>
+        assert(fail.isLeft)
+      }
   }
 }
