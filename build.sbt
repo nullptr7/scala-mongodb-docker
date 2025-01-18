@@ -1,7 +1,7 @@
-import Dependencies._
+import Dependencies.*
 
 ThisBuild / organization := "com.github.nullptr7"
-ThisBuild / scalaVersion := "2.13.14"
+ThisBuild / scalaVersion := "2.13.15"
 
 lazy val `scala-mongodb-docker` =
   project
@@ -65,7 +65,7 @@ lazy val dependencies =
       org.http4s.`http4s-ember-server`,
       org.mongodb.scala.`mongo-scala-driver`,
       org.typelevel.`log4cats-noop`,
-      org.typelevel.`log4cats-slf4j`,
+      org.typelevel.`log4cats-slf4j`
 //      com.github.ghostdogpr.caliban,
 //      com.github.ghostdogpr.`caliban-quick`
     ),

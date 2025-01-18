@@ -3,4 +3,4 @@ package scalamongodbdocker
 package models
 
 //TODO
-case class Employee ()
+case class Employee()

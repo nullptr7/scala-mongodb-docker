@@ -1,12 +1,13 @@
 import sbt._
 
 object Scalac {
+
   val Lint =
     Seq(
       "-Wdead-code",
       "-Wunused:_",
       "-Wvalue-discard",
-      "-Xlint:_",
+      "-Xlint:_"
     )
 
   val FatalWarnings =
@@ -27,4 +28,5 @@ object Scalac {
     val shouldLint =
       settingKey[Boolean]("By default: true inside ci unless lint is off.")
   }
+
 }

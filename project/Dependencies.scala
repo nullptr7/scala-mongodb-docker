@@ -1,4 +1,4 @@
-import sbt._
+import sbt.*
 
 object Dependencies {
 
@@ -8,7 +8,7 @@ object Dependencies {
 
       object expecty {
         val expecty =
-          "com.eed3si9n.expecty" %% "expecty" % "0.16.0"
+          "com.eed3si9n.expecty" %% "expecty" % "0.17.0"
       }
 
     }
@@ -17,10 +17,10 @@ object Dependencies {
 
       object ghostdogpr {
         val caliban =
-          "com.github.ghostdogpr" %% "caliban" % "2.9.0"
+          "com.github.ghostdogpr" %% "caliban" % "2.9.1"
 
         val `caliban-quick` =
-          "com.github.ghostdogpr" %% "caliban-quick" % "2.9.0"
+          "com.github.ghostdogpr" %% "caliban-quick" % "2.9.1"
 
       }
 
@@ -37,13 +37,13 @@ object Dependencies {
 
     object scalamock {
       val scalamock =
-        "org.scalamock" %% "scalamock" % "5.1.0"
+        "org.scalamock" %% "scalamock" % "6.1.1"
     }
 
     object scalatest {
 
       val scalatest =
-        "org.scalatest" %% "scalatest" % "3.1.0"
+        "org.scalatest" %% "scalatest" % "3.2.19"
     }
 
     object scalatestplus {
@@ -53,7 +53,7 @@ object Dependencies {
 
     object scalameta {
       val munit =
-        "org.scalameta" %% "munit" % "1.0.2"
+        "org.scalameta" %% "munit" % "1.0.4"
 
       val `munit-scalacheck` =
         moduleId("munit-scalacheck")
@@ -83,7 +83,7 @@ object Dependencies {
 
     object http4s {
       private[this] val http4sVersion =
-        "0.23.18"
+        "0.23.30"
 
       val `http4s-ember-client` =
         "org.http4s" %% "http4s-ember-client" % http4sVersion
@@ -99,7 +99,7 @@ object Dependencies {
 
       object scala {
         val `mongo-scala-driver` =
-          "org.mongodb.scala" %% "mongo-scala-driver" % "5.2.0"
+          "org.mongodb.scala" %% "mongo-scala-driver" % "5.3.0"
       }
 
     }
@@ -110,7 +110,7 @@ object Dependencies {
 
     object cir {
       val ciris =
-        "is.cir" %% "ciris" % "3.6.0"
+        "is.cir" %% "ciris" % "3.7.0"
     }
 
   }
