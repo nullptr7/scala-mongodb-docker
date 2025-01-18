@@ -7,7 +7,7 @@ import munit.CatsEffectSuite
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.when
 import org.mongodb.scala.bson.collection.immutable.Document
-import org.mongodb.scala.{MongoClient, MongoDatabase, SingleObservable}
+import org.mongodb.scala._
 import org.scalatestplus.mockito.MockitoSugar
 import org.typelevel.log4cats.Logger
 import org.typelevel.log4cats.slf4j.Slf4jLogger

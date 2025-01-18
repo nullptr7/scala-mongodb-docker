@@ -1,4 +1,4 @@
 import Dependencies._
 
-ThisBuild / semanticdbEnabled := true
+ThisBuild / semanticdbEnabled := false
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision

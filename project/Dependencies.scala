@@ -13,6 +13,19 @@ object Dependencies {
 
     }
 
+    object github {
+
+      object ghostdogpr {
+        val caliban =
+          "com.github.ghostdogpr" %% "caliban" % "2.9.0"
+
+        val `caliban-quick` =
+          "com.github.ghostdogpr" %% "caliban-quick" % "2.9.0"
+
+      }
+
+    }
+
   }
 
   object org {
@@ -49,7 +62,7 @@ object Dependencies {
         "org.scalameta" %% artifact % "1.0.0"
     }
 
-    object mockito   {
+    object mockito {
       val `mockito-scala` =
         "org.mockito" %% "mockito-scala" % "1.17.37"
     }
