@@ -4,9 +4,11 @@ package db
 
 import org.mongodb.scala.MongoClient
 import org.mongodb.scala.bson.Document
+
 import cats.effect.kernel.Async
 import cats.implicits._
-import utils.ImplicitsOps.FromFutureToAsyncOps
+
+import com.github.nullptr7.scalamongodbdocker.utils.ImplicitsOps.FromFutureToAsyncOps
 import org.typelevel.log4cats.LoggerFactory
 
 sealed abstract class HealthCheckMongoDbRepository[F[_]: Async: LoggerFactory](dbName: String) extends Repository[F, MongoClient] {

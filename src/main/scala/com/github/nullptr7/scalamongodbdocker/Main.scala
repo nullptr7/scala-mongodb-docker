@@ -1,14 +1,16 @@
 package com.github.nullptr7
 package scalamongodbdocker
 
+import org.mongodb.scala.MongoClient
+
 import cats.data.Kleisli
 import cats.effect.{ExitCode, IO, IOApp}
+
 import com.comcast.ip4s.IpLiteralSyntax
-import db.HealthCheckMongoDbRepositoryImpl
-import org.http4s.{Request, Response}
-import server.HealthRoute
+import com.github.nullptr7.scalamongodbdocker.db.HealthCheckMongoDbRepositoryImpl
+import com.github.nullptr7.scalamongodbdocker.server.HealthRoute
 import org.http4s.ember.server.EmberServerBuilder
-import org.mongodb.scala.MongoClient
+import org.http4s.{Request, Response}
 import org.typelevel.log4cats.LoggerFactory
 import org.typelevel.log4cats.slf4j.Slf4jFactory
 

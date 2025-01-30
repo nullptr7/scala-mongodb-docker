@@ -2,12 +2,14 @@ package com.github.nullptr7
 package scalamongodbdocker
 package db
 
+import org.mongodb.scala._
+import org.mongodb.scala.bson.collection.immutable.Document
+
 import cats.effect.IO
+
 import munit.CatsEffectSuite
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito._
-import org.mongodb.scala._
-import org.mongodb.scala.bson.collection.immutable.Document
 import org.scalatestplus.mockito.MockitoSugar
 import org.typelevel.log4cats.LoggerFactory
 import org.typelevel.log4cats.slf4j.Slf4jFactory

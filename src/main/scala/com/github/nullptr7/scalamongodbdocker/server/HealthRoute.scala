@@ -2,14 +2,15 @@ package com.github.nullptr7
 package scalamongodbdocker
 package server
 
+import scala.concurrent.duration.{FiniteDuration, MILLISECONDS}
+
 import cats.effect._
 import cats.effect.implicits.genTemporalOps
 import cats.implicits._
-import exceptions.DatabaseConnectionException
-import db.HealthCheckMongoDbRepository
-import org.http4s._
 
-import scala.concurrent.duration.{FiniteDuration, MILLISECONDS}
+import com.github.nullptr7.scalamongodbdocker.db.HealthCheckMongoDbRepository
+import com.github.nullptr7.scalamongodbdocker.exceptions.DatabaseConnectionException
+import org.http4s._
 
 final class HealthRoute[F[_]: Async] private (private val healthcheckRepo: HealthCheckMongoDbRepository[F]) extends Http4sDslHelper[F] {
 

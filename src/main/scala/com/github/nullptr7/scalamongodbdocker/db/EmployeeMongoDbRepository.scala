@@ -3,10 +3,12 @@ package scalamongodbdocker
 package db
 
 import org.mongodb.scala.MongoClient
+
 import cats.data.EitherT
 import cats.effect.kernel.Async
-import exceptions.EmployeeDetailsFetchException
-import models.Employee
+
+import com.github.nullptr7.scalamongodbdocker.exceptions.EmployeeDetailsFetchException
+import com.github.nullptr7.scalamongodbdocker.models.Employee
 import org.typelevel.log4cats.LoggerFactory
 
 abstract class EmployeeMongoDbRepository[F[_]: LoggerFactory](override val clientF: F[MongoClient]) extends Repository[F, MongoClient] {
