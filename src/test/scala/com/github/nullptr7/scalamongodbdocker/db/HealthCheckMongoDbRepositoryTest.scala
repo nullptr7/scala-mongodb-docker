@@ -2,23 +2,21 @@ package com.github.nullptr7
 package scalamongodbdocker
 package db
 
-import org.mongodb.scala._
-import org.mongodb.scala.bson.collection.immutable.Document
-
 import cats.effect.IO
-
 import munit.CatsEffectSuite
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito._
+import org.mongodb.scala._
+import org.mongodb.scala.bson.collection.immutable.Document
 import org.scalatestplus.mockito.MockitoSugar
-import org.typelevel.log4cats.Logger
-import org.typelevel.log4cats.slf4j.Slf4jLogger
+import org.typelevel.log4cats.LoggerFactory
+import org.typelevel.log4cats.slf4j.Slf4jFactory
 
 class HealthCheckMongoDbRepositoryTest extends CatsEffectSuite with MockitoSugar {
 
   test("HealthCheckMongoDbRepository should be able to ping successfully") {
 
-    implicit val logger: Logger[IO] = Slf4jLogger.getLogger[IO]
+    implicit val loggerFactory: LoggerFactory[IO] = Slf4jFactory.create[IO]
 
     val mockMongoClient: MongoClient   = mock[MongoClient]
     val mockDatabase:    MongoDatabase = mock[MongoDatabase]

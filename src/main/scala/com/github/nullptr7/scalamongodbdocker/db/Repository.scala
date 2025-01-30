@@ -4,18 +4,17 @@ package db
 
 import cats._
 import cats.implicits._
+import exceptions.DatabaseException
+import org.typelevel.log4cats.{LoggerFactory, SelfAwareStructuredLogger}
 
-import com.github.nullptr7.scalamongodbdocker.exceptions.DatabaseConnectionException
-import org.typelevel.log4cats.Logger
+abstract class Repository[F[_]: LoggerFactory, Client] {
 
-abstract class Repository[F[_]: Logger, Client] {
+  final private val logger: SelfAwareStructuredLogger[F] = LoggerFactory[F].getLogger
 
-  final protected[db] def logAndRaise(implicit
-    ae: ApplicativeError[F, Throwable]
-  ): PartialFunction[Throwable, F[Unit]] = { case t: Throwable =>
-    Logger[F].error(t.getMessage) *> ae.raiseError[Unit](DatabaseConnectionException(t))
-
-  }
+  final def logAndRaise(databaseException: DatabaseException)(implicit
+    ae:                                    ApplicativeError[F, Throwable]
+  ): F[Unit] =
+    logger.error(databaseException)("Repository error was raised") *> ae.raiseError[Unit](databaseException)
 
   protected[db] def clientF: F[Client]
 

@@ -4,14 +4,12 @@ package db
 
 import org.mongodb.scala.MongoClient
 import org.mongodb.scala.bson.Document
-
 import cats.effect.kernel.Async
 import cats.implicits._
+import utils.ImplicitsOps.FromFutureToAsyncOps
+import org.typelevel.log4cats.LoggerFactory
 
-import com.github.nullptr7.scalamongodbdocker.utils.ImplicitsOps.FromFutureToAsyncOps
-import org.typelevel.log4cats.Logger
-
-sealed abstract class HealthCheckMongoDbRepository[F[_]: Async: Logger](dbName: String) extends Repository[F, MongoClient] {
+sealed abstract class HealthCheckMongoDbRepository[F[_]: Async: LoggerFactory](dbName: String) extends Repository[F, MongoClient] {
 
   final def ping: F[Unit] =
     for {
@@ -30,7 +28,7 @@ sealed abstract class HealthCheckMongoDbRepository[F[_]: Async: Logger](dbName: 
 
 object HealthCheckMongoDbRepositoryImpl {
 
-  def make[F[_]: Async: Logger](cf: F[MongoClient], dbName: String): HealthCheckMongoDbRepository[F] =
+  def make[F[_]: Async: LoggerFactory](cf: F[MongoClient], dbName: String): HealthCheckMongoDbRepository[F] =
     new HealthCheckMongoDbRepository[F](dbName) {
       override protected[db] val clientF: F[MongoClient] = cf
 

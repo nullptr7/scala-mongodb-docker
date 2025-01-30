@@ -83,7 +83,7 @@ object Dependencies {
 
     object http4s {
       private[this] val http4sVersion =
-        "0.23.30"
+        "1.0.0-M44"
 
       val `http4s-ember-client` =
         "org.http4s" %% "http4s-ember-client" % http4sVersion
@@ -102,6 +102,11 @@ object Dependencies {
           "org.mongodb.scala" %% "mongo-scala-driver" % "5.3.0"
       }
 
+    }
+
+    object slf4j {
+      val `slf4j-simple` =
+        "org.slf4j" % "slf4j-simple" % "2.0.16"
     }
 
   }

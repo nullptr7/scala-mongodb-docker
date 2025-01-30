@@ -64,7 +64,7 @@ lazy val dependencies =
       org.http4s.`http4s-ember-client`,
       org.http4s.`http4s-ember-server`,
       org.mongodb.scala.`mongo-scala-driver`,
-      org.typelevel.`log4cats-noop`,
+      org.slf4j.`slf4j-simple`,
       org.typelevel.`log4cats-slf4j`
 //      com.github.ghostdogpr.caliban,
 //      com.github.ghostdogpr.`caliban-quick`
