@@ -1,5 +1,7 @@
 import Dependencies.*
 
+import scala.util.Try
+
 ThisBuild / organization := "com.github.nullptr7"
 ThisBuild / scalaVersion := "2.13.15"
 
@@ -7,9 +9,28 @@ lazy val `scala-mongodb-docker` =
   project
     .in(file("."))
     .settings(name := "scala-mongodb-docker")
+    .settings(scalafmtOnCompile := true)
     .settings(commonSettings)
     .settings(autoImportSettings)
     .settings(dependencies)
+
+val checkFormatting = taskKey[Unit]("Lists all projects in the build")
+
+checkFormatting := {
+  val taskKeyName = "scalafmtCheckAll"
+  val structure   = buildStructure.value
+  val state       = Keys.state.value
+  val extracted   = Project.extract(state)
+  val allProjects = buildStructure.value.allProjectRefs
+  val logger      = streams.value.log
+
+  allProjects.foreach { projectRef =>
+    logger.info(s"Running for ${projectRef.project}")
+    Try(extracted.runTask(projectRef / TaskKey[Unit](taskKeyName), state))
+      .foreach(_ => ()) // discard any outcome.
+  }
+
+}
 
 lazy val commonSettings = {
   lazy val commonScalacOptions =
