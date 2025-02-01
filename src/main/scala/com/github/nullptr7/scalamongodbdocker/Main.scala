@@ -7,19 +7,21 @@ import cats.data.Kleisli
 import cats.effect.{ExitCode, IO, IOApp}
 
 import com.comcast.ip4s.IpLiteralSyntax
-import com.github.nullptr7.scalamongodbdocker.db.HealthCheckMongoDbRepositoryImpl
-import com.github.nullptr7.scalamongodbdocker.server.HealthRoute
+
 import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.{Request, Response}
 import org.typelevel.log4cats.LoggerFactory
 import org.typelevel.log4cats.slf4j.Slf4jFactory
 
+import db.HealthCheckMongoDbRepositoryImpl
+import server.HealthRoute
+
 object Main extends IOApp {
 
   implicit val loggerFactory: LoggerFactory[IO] = Slf4jFactory.create[IO]
 
-  private val uri:         String                                 = "mongodb://localhost:27017";
-  private val client:      MongoClient                            = MongoClient(uri);
+  private val uri:         String                                 = "mongodb://localhost:27017"
+  private val client:      MongoClient                            = MongoClient(uri)
   private val healthRoute: Kleisli[IO, Request[IO], Response[IO]] =
     HealthRoute[IO](HealthCheckMongoDbRepositoryImpl.make[IO](IO.pure(client), "testdb")).healthRoute.orNotFound
 

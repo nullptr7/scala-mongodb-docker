@@ -8,8 +8,9 @@ import org.mongodb.scala.bson.Document
 import cats.effect.kernel.Async
 import cats.implicits._
 
-import com.github.nullptr7.scalamongodbdocker.utils.ImplicitsOps.FromFutureToAsyncOps
 import org.typelevel.log4cats.LoggerFactory
+
+import utils.ImplicitsOps.FromFutureToAsyncOps
 
 sealed abstract class HealthCheckMongoDbRepository[F[_]: Async: LoggerFactory](dbName: String) extends Repository[F, MongoClient] {
 

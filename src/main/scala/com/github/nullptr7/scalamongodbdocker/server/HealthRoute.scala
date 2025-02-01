@@ -8,9 +8,10 @@ import cats.effect._
 import cats.effect.implicits.genTemporalOps
 import cats.implicits._
 
-import com.github.nullptr7.scalamongodbdocker.db.HealthCheckMongoDbRepository
-import com.github.nullptr7.scalamongodbdocker.exceptions.DatabaseConnectionException
 import org.http4s._
+
+import db.HealthCheckMongoDbRepository
+import exceptions.DatabaseConnectionException
 
 final class HealthRoute[F[_]: Async] private (private val healthcheckRepo: HealthCheckMongoDbRepository[F]) extends Http4sDslHelper[F] {
 

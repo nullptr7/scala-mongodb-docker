@@ -5,8 +5,9 @@ package db
 import cats._
 import cats.implicits._
 
-import com.github.nullptr7.scalamongodbdocker.exceptions.DatabaseException
 import org.typelevel.log4cats.{LoggerFactory, SelfAwareStructuredLogger}
+
+import exceptions.DatabaseException
 
 abstract class Repository[F[_]: LoggerFactory, Client] {
 

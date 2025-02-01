@@ -7,9 +7,10 @@ import org.mongodb.scala.MongoClient
 import cats.data.EitherT
 import cats.effect.kernel.Async
 
-import com.github.nullptr7.scalamongodbdocker.exceptions.EmployeeDetailsFetchException
-import com.github.nullptr7.scalamongodbdocker.models.Employee
 import org.typelevel.log4cats.LoggerFactory
+
+import exceptions.EmployeeDetailsFetchException
+import models.Employee
 
 abstract class EmployeeMongoDbRepository[F[_]: LoggerFactory](override val clientF: F[MongoClient]) extends Repository[F, MongoClient] {
   def getAllEmployees: EitherT[F, EmployeeDetailsFetchException, List[Employee]]
