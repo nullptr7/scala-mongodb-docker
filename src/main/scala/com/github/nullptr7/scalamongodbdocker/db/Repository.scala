@@ -13,11 +13,11 @@ abstract class Repository[F[_]: LoggerFactory, Client] {
 
   final private val logger: SelfAwareStructuredLogger[F] = LoggerFactory[F].getLogger
 
-  final def logAndRaise(databaseException: DatabaseException)(implicit
+  final def logAndRaise[A](databaseException: DatabaseException)(implicit
     ae:                                    ApplicativeError[F, Throwable]
-  ): F[Unit] =
-    logger.error(databaseException)("Repository error was raised") *> ae.raiseError[Unit](databaseException)
+  ): F[A] =
+    logger.error(databaseException)("Repository error was raised") *> ae.raiseError[A](databaseException)
 
-  protected[db] def clientF: F[Client]
+  protected[db] def dbClient: Client
 
 }

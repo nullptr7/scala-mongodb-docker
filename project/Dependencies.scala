@@ -79,11 +79,16 @@ object Dependencies {
 
       val `munit-cats-effect-3` =
         "org.typelevel" %% "munit-cats-effect" % "2.0.0"
+
+      val `cats-effect` =
+        "org.typelevel" %% "cats-effect" % "3.5.7"
+
+      val `cats-core` =
+        "org.typelevel" %% "cats-core" % "2.13.0"
     }
 
     object http4s {
-      private[this] val http4sVersion =
-        "1.0.0-M44"
+      private[this] val http4sVersion = "1.0.0-M44"
 
       val `http4s-ember-client` =
         "org.http4s" %% "http4s-ember-client" % http4sVersion
@@ -93,13 +98,16 @@ object Dependencies {
 
       val `http4s-dsl` =
         "org.http4s" %% "http4s-dsl" % http4sVersion
+
+      val `http4s-circe` =
+        "org.http4s" %% "http4s-circe" % http4sVersion
     }
 
     object mongodb {
 
       object scala {
         val `mongo-scala-driver` =
-          "org.mongodb.scala" %% "mongo-scala-driver" % "5.3.0"
+          "org.mongodb.scala" %% "mongo-scala-driver" % "5.3.1"
       }
 
     }
@@ -118,6 +126,13 @@ object Dependencies {
         "is.cir" %% "ciris" % "3.7.0"
     }
 
+  }
+
+  object `io` {
+    object circe {
+      val `circe-generic` =
+        "io.circe" %% "circe-generic" % "0.14.8"
+    }
   }
 
 }

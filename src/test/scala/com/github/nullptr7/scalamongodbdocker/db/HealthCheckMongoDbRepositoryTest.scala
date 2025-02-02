@@ -27,7 +27,7 @@ class HealthCheckMongoDbRepositoryTest extends CatsEffectSuite with MockitoSugar
     when(mockMongoClient.getDatabase("admin")).thenReturn(mockDatabase)
     when(mockDatabase.runCommand[Document](any())(any(), any())).thenReturn(SingleObservable(pingResponse))
 
-    val healthCheckMongoDbRepository = HealthCheckMongoDbRepositoryImpl.make[IO](IO.pure(mockMongoClient), "admin")
+    val healthCheckMongoDbRepository = HealthCheckMongoDbRepository.make[IO](mockMongoClient, "admin")
 
     assertIO(healthCheckMongoDbRepository.ping, ())
   }

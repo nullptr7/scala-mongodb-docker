@@ -27,7 +27,7 @@ class EmployeeMongoDbRepositoryTest extends CatsEffectSuite with MockitoSugar {
     when(mockMongoClient.getDatabase("admin")).thenReturn(mockDatabase)
     when(mockDatabase.runCommand[Document](any[Document]())(any(), any())).thenReturn(SingleObservable(pingResponse))
 
-    val employeeMongoDbRepository = EmployeeMongoDbRepositoryImpl.make[IO](IO.pure(mockMongoClient))
+    val employeeMongoDbRepository = EmployeeMongoDbRepository.make[IO]("", "", mockMongoClient)
 
     employeeMongoDbRepository
       .getAllEmployees

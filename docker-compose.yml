@@ -7,18 +7,18 @@ services:
       - "27017:27017"
     networks:
       - mongo-network
-  app:
-    image: mongo-test-image
-    container_name: app-container
-    depends_on:
-      - mongo
-    networks:
-      - mongo-network
-    environment:
-      MONGO_HOST: mongo-test  # Ensure this matches the service name in Docker Compose
-      MONGO_PORT: 27017
-    ports:
-      - "8081:8081"
+#  app:
+#    image: mongo-test-image
+#    container_name: app-container
+#    depends_on:
+#      - mongo
+#    networks:
+#      - mongo-network
+#    environment:
+#      MONGO_HOST: mongo-test  # Ensure this matches the service name in Docker Compose
+#      MONGO_PORT: 27017
+#    ports:
+#      - "8081:8081"
 networks:
   mongo-network:
     driver: bridge

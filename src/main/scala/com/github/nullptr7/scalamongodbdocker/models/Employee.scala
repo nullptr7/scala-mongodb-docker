@@ -2,5 +2,7 @@ package com.github.nullptr7
 package scalamongodbdocker
 package models
 
-//TODO
-case class Employee()
+case class Employee(firstName: String, lastName: String, empId: Long)
+
+object Employee {
+}

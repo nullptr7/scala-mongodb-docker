@@ -3,7 +3,7 @@ import Dependencies.*
 import scala.util.Try
 
 ThisBuild / organization := "com.github.nullptr7"
-ThisBuild / scalaVersion := "2.13.15"
+ThisBuild / scalaVersion := "2.13.16"
 
 lazy val `scala-mongodb-docker` =
   project
@@ -82,11 +82,15 @@ lazy val dependencies =
     libraryDependencies ++= Seq(
       is.cir.ciris,
       org.http4s.`http4s-dsl`,
+      org.http4s.`http4s-circe`,
       org.http4s.`http4s-ember-client`,
       org.http4s.`http4s-ember-server`,
       org.mongodb.scala.`mongo-scala-driver`,
       org.slf4j.`slf4j-simple`,
-      org.typelevel.`log4cats-slf4j`
+      org.typelevel.`log4cats-slf4j`,
+      org.typelevel.`cats-effect`,
+      org.typelevel.`cats-core`,
+      Dependencies.`io`.circe.`circe-generic`
 //      com.github.ghostdogpr.caliban,
 //      com.github.ghostdogpr.`caliban-quick`
     ),

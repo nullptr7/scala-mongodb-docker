@@ -16,11 +16,10 @@ sealed abstract class HealthCheckMongoDbRepository[F[_]: Async: LoggerFactory](d
 
   final def ping: F[Unit] =
     for {
-      client <- clientF
-      _      <-
+      _ <-
         Async[F]
           .fromFuture[Document] {
-            client
+            dbClient
               .getDatabase(dbName)
               .runCommand(Document("ping" -> 1))
               .as[F]
@@ -29,12 +28,12 @@ sealed abstract class HealthCheckMongoDbRepository[F[_]: Async: LoggerFactory](d
 
 }
 
-object HealthCheckMongoDbRepositoryImpl {
+object HealthCheckMongoDbRepository {
 
-  def make[F[_]: Async: LoggerFactory](cf: F[MongoClient], dbName: String): HealthCheckMongoDbRepository[F] =
+  def make[F[_]: Async: LoggerFactory](mongoClient: MongoClient, dbName: String): F[HealthCheckMongoDbRepository[F]] =
     new HealthCheckMongoDbRepository[F](dbName) {
-      override protected[db] val clientF: F[MongoClient] = cf
+      override protected[db] val dbClient: MongoClient = mongoClient
 
-    }
+    }.pure[F]
 
 }
